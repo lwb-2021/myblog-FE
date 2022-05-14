@@ -32,6 +32,7 @@ declare module '@vue/runtime-core' {
     TListItemMeta: typeof import('tdesign-vue-next')['ListItemMeta']
     TMenuItem: typeof import('tdesign-vue-next')['MenuItem']
     TPagination: typeof import('tdesign-vue-next')['Pagination']
+    TPopconfirm: typeof import('tdesign-vue-next')['Popconfirm']
     TRow: typeof import('tdesign-vue-next')['Row']
     TTextarea: typeof import('tdesign-vue-next')['Textarea']
     TTooltip: typeof import('tdesign-vue-next')['Tooltip']
