@@ -15,7 +15,7 @@
            @click="this.$router.push('/blog/create')"><t-icon class="t-menu__operations-icon"
                                                               name="edit"/></a>
         <a href="javascript:void(0)"
-           @click="this.$router.push('/blog/login')"><t-icon class="t-menu__operations-icon" name="login" /></a>
+           @click="this.$router.push('/login')"><t-icon class="t-menu__operations-icon" name="login" /></a>
       </template>
     </t-head-menu>
   </div>

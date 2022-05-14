@@ -5,6 +5,7 @@ import BlogSearch from "../views/BlogSearch.vue"
 import BlogEdit from "../views/BlogEdit.vue";
 import BlogCreate from "../views/BlogCreate.vue";
 import BlogView from "../views/BlogView.vue";
+import BlogDelete from "../views/BlogDelete.vue";
 export const routes = [
     {
         path: "/home",
@@ -40,6 +41,11 @@ export const routes = [
         path: "/blog/view/:id",
         name: "BlogView",
         component: BlogView
+    },
+    {
+        path: "/blog/delete/:id",
+        name: "BlogDelete",
+        component: BlogDelete
     },
     {
         path: "/",
