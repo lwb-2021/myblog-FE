@@ -14,11 +14,11 @@ export default {
 
 </script>
 <style>
+:root,
 #app {
   width: 100%;
   height: 100%;
 }
-:root,
 body{
   width: 100%;
   height: 100%;
@@ -26,5 +26,7 @@ body{
 }
 div.view{
   padding-top: 10px;
+  width: 100%;
+  height: 100%;
 }
 </style>

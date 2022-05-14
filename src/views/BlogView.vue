@@ -53,13 +53,13 @@ export default {
 <style>
 div.blog{
   background: white;
-  margin: 10px auto auto;
+  margin: auto auto;
   width: 50%;
   height: 100%;
 }
 div.title{
   background: white;
-  width: 95%;
+  width: 100%;
   padding-top: 5px;
   padding-left: 20px;
   text-align: left;

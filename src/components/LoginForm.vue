@@ -1,6 +1,6 @@
 <template>
   <div style="width: 350px" class="div-form">
-    <h1 style="text-align: center">
+    <h1 class="login-title" style="text-align: center">
       登录
     </h1>
     <t-form ref="form" :data="formData" :colon="true" :label-width="0" @reset="onReset" @submit="onSubmit">

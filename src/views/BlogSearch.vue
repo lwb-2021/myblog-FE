@@ -2,7 +2,7 @@
   <div>
     <t-row>
       <t-col flex="auto">
-        <t-input v-model="keyword" clearable placeholder="请输入" @clear="() => this.keyword=''"
+        <t-input v-model="keyword" clearable placeholder="搜索" @clear="() => this.keyword=''"
         @change="() => keyword===''?page(currentPage):undefined"/>
       </t-col>
       <t-col flex="20px">
