@@ -72,6 +72,7 @@ export default {
               }else {
                 MessagePlugin.success(result.data.message)
               }
+              self.$router.push("/blog")
             }
         )
       }else {

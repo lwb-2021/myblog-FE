@@ -36,6 +36,7 @@ export default {
   },
   methods:{
     delete(){
+      const self = this
       const message = MessagePlugin.loading("正在删除")
       axios.post("/api/blog/delete", {
         "id": this.$route.params.id
@@ -47,6 +48,7 @@ export default {
               await MessagePlugin.success("删除成功", 2000);
             }
             (await message).close()
+            await self.$router.push("/blog")
           }
       )
     }
