@@ -1,6 +1,9 @@
 <template>
   <BlogMenu />
-  <router-view />
+  <div class="view">
+    <router-view />
+  </div>
+
 </template>
 
 <script>
@@ -20,5 +23,8 @@ body{
   width: 100%;
   height: 100%;
   background: #f3f4f6;
+}
+div.view{
+  padding-top: 10px;
 }
 </style>

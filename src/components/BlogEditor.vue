@@ -86,7 +86,7 @@ export default {
 <style>
 div.editor{
   background: white;
-  margin: 10px auto auto;
+  margin: auto auto;
   width: 90%;
   height: 100%;
 }
