@@ -68,6 +68,6 @@ div.content{
   background: white;
   padding-top: 5px;
   padding-left: 20px;
-  width: 95%;
+  width: 100%;
 }
 </style>
