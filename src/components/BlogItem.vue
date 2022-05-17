@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     toView(){
-      this.$router.push("/blog/view" + this.id)
+      this.$router.push("/blog/view/" + this.id)
     }
   }
 
