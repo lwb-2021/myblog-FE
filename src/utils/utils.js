@@ -1,27 +1,27 @@
 import axios, {AxiosResponse} from "axios";
 import {MessagePlugin} from "tdesign-vue-next";
 
-export function setCookie(cname: string,value: string,days: number) {
+export function setCookie(cname,value,days) {
     const d = new Date();
     d.setTime(d.getTime()+(days*24*60*60*1000));
     const expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + value + "; " + expires;
 }
-export function getCookie(cname: string) {
+export function getCookie(cname) {
     const name = cname + "=";
     const ca = document.cookie.split(';');
     for(let i=0; i<ca.length; i++) {
         const c = ca[i].trim();
-        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        if (c.indexOf(name)===0) return c.substring(name.length,c.length);
     }
     return "";
 }
 
-export function hasCookie(cname: string){
+export function hasCookie(cname){
     return getCookie(cname) === ""
 }
 
-export function removeCookie(cname: string){
+export function removeCookie(cname){
     setCookie(cname, "", -1)
 }
 
@@ -59,12 +59,12 @@ export function getUserHeaders() {
 }
 
 
-export async function isUser(userId: number){
+export async function isUser(userId){
     let isUser
     await axios.post("/api/user/verify", {}, {
         headers: getUserHeaders()
     }).then(
-        async (result: AxiosResponse<any>) => {
+        async (result) => {
             isUser = result.data.data.id === userId
         })
     return isUser
@@ -77,7 +77,7 @@ export async function isAdmin(){
     await axios.post("/api/user/verify", {}, {
         headers: getUserHeaders()
     }).then(
-        async (result: AxiosResponse<any>) => {
+        async (result) => {
             isAdmin = result.data.data.role >=2
         })
     return isAdmin

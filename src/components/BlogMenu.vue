@@ -9,14 +9,15 @@
       <t-menu-item value="admin" :disabled="!isAdmin"> 管理 </t-menu-item>
 
       <template #operations>
-        <a href="javascript:void(0)"
-           @click="this.$router.push('/blog/search')"><t-icon class="t-menu__operations-icon"
-                                                              name="search"/></a>
-        <a href="javascript:void(0)"
-           @click="this.$router.push('/blog/create')"><t-icon class="t-menu__operations-icon"
-                                                              name="edit"/></a>
-        <a href="javascript:void(0)"
-           @click="this.$router.push('/login')"><t-icon class="t-menu__operations-icon" name="login" /></a>
+        <router-link to="/blog/search">
+          <t-icon class="t-menu__operations-icon" name="search" />
+        </router-link>
+        <router-link to="/blog/create">
+          <t-icon class="t-menu__operations-icon" name="edit" />
+        </router-link>
+        <router-link to="/login">
+          <t-icon class="t-menu__operations-icon" name="login" />
+        </router-link>
       </template>
     </t-head-menu>
   </div>
@@ -42,7 +43,6 @@ export default {
   },
   methods:{
     changeHandler(active){
-      console.log('change', active);
       this.$router.push("/"+active)
     }
   },

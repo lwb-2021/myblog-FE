@@ -1,6 +1,6 @@
 <template>
     <t-list-item :subtitle="subtitle">
-      <t-list-item-meta @click="this.$router.push('/blog/view/' + id)">
+      <t-list-item-meta @click="toView">
         <template #title>
           {{title}}
         </template>
@@ -77,6 +77,11 @@ export default {
   name: "BlogItem",
   created() {
     // console.log([this.id, this.title, this.subtitle, this.previewText, this.authorId])
+  },
+  methods: {
+    toView(){
+      this.$router.push("/blog/view" + this.id)
+    }
   }
 
 }
