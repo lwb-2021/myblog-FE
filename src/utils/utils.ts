@@ -70,3 +70,16 @@ export async function isUser(userId: number){
     return isUser
 
 }
+
+
+export async function isAdmin(){
+    let isAdmin
+    await axios.post("/api/user/verify", {}, {
+        headers: getUserHeaders()
+    }).then(
+        async (result: AxiosResponse<any>) => {
+            isAdmin = result.data.data.role >=2
+        })
+    return isAdmin
+
+}

@@ -7,29 +7,30 @@
       </t-col>
       <t-col flex="20px">
         <t-button theme="default" @click="() => page(currentPage)">
-          <search-icon/>
+          <search-icon />
         </t-button>
       </t-col>
     </t-row>
 
-    <blog-list :blogs="blogs"/>
+    <user-list :users="users"/>
     <custom-pagination @changeCurrentPage="changeCurrentPage" @changePageSize="changePageSize" v-model:total="total"/>
   </div>
 </template>
 
 <script>
-import CustomPagination from "../components/CustomPagination"
-import BlogList from "../components/BlogList";
 import axios from "axios";
 import {SearchIcon} from "tdesign-icons-vue-next";
 import qs from "qs";
+import CustomPagination from "./CustomPagination";
+import UserList from "./UserList";
+import {getUserHeaders} from "../utils/utils";
 
 export default {
-  name: "BlogSearch",
-  components: {SearchIcon, BlogList, CustomPagination},
+  name: "UserSearch",
+  components: {SearchIcon, CustomPagination, UserList},
   data(){
     return{
-      blogs: null,
+      users: null,
       currentPage: 1,
       pageSize: 10,
       total: 0,
@@ -50,17 +51,15 @@ export default {
     },
     page (currentPage) {
       const self = this
-      axios.post("api/blog/list", qs.stringify({
+      axios.post("api/admin/list", qs.stringify({
         "currentPage": currentPage,
         "pageSize": this.pageSize,
         "keywords": this.keyword
       }), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
+        headers: getUserHeaders()
       }).then((result) => {
         const data = result.data.data
-        self.blogs = data.records
+        self.users = data.records
         self.currentPage = data.current
         self.pageSize = data.size
         self.total = data.total
@@ -68,7 +67,7 @@ export default {
     },
     async count(){
       let count;
-      await axios.post("/api/blog/total?keywords="+this.keyword, ).then(
+      await axios.post("/api/admin/total?keywords="+this.keyword).then(
           (response) => {
             count = response.data.data
           }

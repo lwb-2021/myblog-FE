@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Admin: typeof import('./src/components/Admin.vue')['default']
     BlogCard: typeof import('./src/components/BlogCard.vue')['default']
     BlogCreate: typeof import('./src/views/BlogCreate.vue')['default']
     BlogEditor: typeof import('./src/components/BlogEditor.vue')['default']
@@ -13,8 +14,10 @@ declare module '@vue/runtime-core' {
     BlogListWithAsyncLoading: typeof import('./src/components/BlogListWithAsyncLoading.vue')['default']
     BlogMenu: typeof import('./src/components/BlogMenu.vue')['default']
     BlogPagination: typeof import('./src/components/BlogPagination.vue')['default']
+    CustomPagination: typeof import('./src/components/CustomPagination.vue')['default']
     InputBox: typeof import('./src/components/InputBox.vue')['default']
     LoginForm: typeof import('./src/components/LoginForm.vue')['default']
+    Pagination: typeof import('./src/components/Pagination.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TButton: typeof import('tdesign-vue-next')['Button']
@@ -34,8 +37,13 @@ declare module '@vue/runtime-core' {
     TPagination: typeof import('tdesign-vue-next')['Pagination']
     TPopconfirm: typeof import('tdesign-vue-next')['Popconfirm']
     TRow: typeof import('tdesign-vue-next')['Row']
+    TTabPanel: typeof import('tdesign-vue-next')['TabPanel']
+    TTabs: typeof import('tdesign-vue-next')['Tabs']
     TTextarea: typeof import('tdesign-vue-next')['Textarea']
     TTooltip: typeof import('tdesign-vue-next')['Tooltip']
+    UserItem: typeof import('./src/components/UserItem.vue')['default']
+    UserList: typeof import('./src/components/UserList.vue')['default']
+    UserSearch: typeof import('./src/components/UserSearch.vue')['default']
   }
 }
 

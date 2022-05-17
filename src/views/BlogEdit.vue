@@ -9,7 +9,7 @@ import {getUserHeaders, isUser} from "../utils/utils";
 import BlogEditor from "../components/BlogEditor";
 
 export default {
-  name: "BlogCreate",
+  name: "BlogEdit",
   components: {BlogEditor},
   data(){
     const INITIAL_DATA = {
