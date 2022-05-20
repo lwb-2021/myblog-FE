@@ -1,5 +1,5 @@
 <template>
-<blog-editor :form-data="formData" title="编辑博客" submit-interface="edit"/>
+  <blog-editor :form-data="formData" title="编辑博客" submit-interface="edit"/>
 </template>
 <script>
 import axios from "axios";
@@ -26,11 +26,11 @@ export default {
     }
   },
   created() {
-    const loading = LoadingPlugin({
-      fullscreen: true,
-      attach: 'body',
-      preventScrollThrough: true,
-    })
+      const loading = LoadingPlugin({
+        fullscreen: true,
+        attach: 'body',
+        preventScrollThrough: true,
+      })
     axios.post("/api/blog/get", {
       "id": this.$route.params.id
     }).then(

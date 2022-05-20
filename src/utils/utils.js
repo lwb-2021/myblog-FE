@@ -29,7 +29,7 @@ export async function getUserInfo() {
     if(hasCookie("JWT_TOKEN")){
         let user_info;
         const token = getCookie("JWT_TOKEN")
-        await axios.post("/api/user/verify", {
+        await axios.post("/api/user/verify", {}, {
             headers:{
                 "Authorization": token,
                 "Access-Control-Expose-Headers": "Authorization"
