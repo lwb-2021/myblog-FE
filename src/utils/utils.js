@@ -1,5 +1,4 @@
-import axios, {AxiosResponse} from "axios";
-import {MessagePlugin} from "tdesign-vue-next";
+import axios from "axios";
 
 export function setCookie(cname,value,days) {
     const d = new Date();
@@ -18,7 +17,7 @@ export function getCookie(cname) {
 }
 
 export function hasCookie(cname){
-    return getCookie(cname) === ""
+    return getCookie(cname) !== ""
 }
 
 export function removeCookie(cname){
@@ -27,18 +26,14 @@ export function removeCookie(cname){
 
 export async function getUserInfo() {
     if(hasCookie("JWT_TOKEN")){
-        let user_info;
         const token = getCookie("JWT_TOKEN")
-        await axios.post("/api/user/verify", {}, {
+        const response = await axios.post("/api/user/verify", {}, {
             headers:{
                 "Authorization": token,
                 "Access-Control-Expose-Headers": "Authorization"
             }
-        }).then((response) =>{
-                user_info = response ? response.data : null
-            }
-        )
-        return user_info
+        })
+        return response ? response.data : null
     }
     return null;
 
@@ -60,14 +55,11 @@ export function getUserHeaders() {
 
 
 export async function isUser(userId){
-    let isUser
-    await axios.post("/api/user/verify", {}, {
+    userId = parseInt(userId)
+    const result = await axios.post("/api/user/verify", {}, {
         headers: getUserHeaders()
-    }).then(
-        async (result) => {
-            isUser = result.data.data.id === userId
-        })
-    return isUser
+    })
+    return result.data.data.id === userId
 
 }
 
@@ -76,6 +68,18 @@ export async function isAdmin(){
     let isAdmin
     await axios.post("/api/user/verify", {}, {
         headers: getUserHeaders()
+    }).then(
+        async (result) => {
+            isAdmin = result.data.data.role >=2
+        })
+    return isAdmin
+
+}
+export async function isAdminByID(id){
+    id = parseInt(id)
+    let isAdmin
+    await axios.post("/api/user/get", {
+        "id": id
     }).then(
         async (result) => {
             isAdmin = result.data.data.role >=2

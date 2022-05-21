@@ -2,7 +2,15 @@
     <t-list-item :subtitle="subtitle">
       <t-list-item-meta @click="toView">
         <template #title>
-          {{title}}
+          <span>
+              {{ title }}
+            </span>
+          <t-divider theme="vertical" />
+          <span>
+              <t-tag v-for="tag in tags">
+                {{ tag }}
+              </t-tag>
+          </span>
         </template>
 
         <template #description>
@@ -32,7 +40,7 @@ import {isUser} from "../utils/utils";
 import {toRefs} from "vue";
 import {useRouter} from "vue-router";
 import {IconFont, MoreIcon} from "tdesign-icons-vue-next";
-const props = defineProps(["id", "title", "subtitle", "previewText", "authorId"])
+const props = defineProps(["id", "title", "subtitle", "previewText", "authorId", 'tags'])
 const _props = toRefs(props)
 let options = [
 ];
@@ -76,7 +84,7 @@ const clickHandler = (data) => {
 export default {
   name: "BlogItem",
   created() {
-    // console.log([this.id, this.title, this.subtitle, this.previewText, this.authorId])
+    // console.log([this.id, this.title, this.subtitle, this.previewText, this.authorId, this.tags])
   },
   methods: {
     toView(){

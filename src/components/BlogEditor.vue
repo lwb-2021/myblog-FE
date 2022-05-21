@@ -8,12 +8,15 @@
         <t-form-item style="width: 100%; margin: auto auto" label="标题" name="title">
           <t-input v-model="formData.title" placeholder="请输入标题" :maxlength="100" :suffix="suffix"/>
         </t-form-item>
+        <t-form-item style="width: 100%; margin: auto auto" label="标签" name="tags">
+          <t-tag-input v-model="tag_list" @change="onTagChange"></t-tag-input>
+        </t-form-item>
         <t-form-item style="width: 100%; margin: auto 0" label="内容" name="content">
           <v-md-editor v-model="formData.content" height="300px"></v-md-editor>
         </t-form-item>
         <t-form-item style="padding-top: 8px">
           <div class="button">
-            <t-button block theme="primary" type="submit" style="margin:auto 0">提交</t-button>
+            <t-button theme="primary" type="submit">提交</t-button>
           </div>
         </t-form-item>
       </t-form>
@@ -31,6 +34,9 @@ const rules = {
   ],
   content:[
     {required: true, message: "内容不能为空", type: "error"}
+  ],
+  tags:[
+    {required: true, message: "标签不能为空", type: "error"}
   ]
 }
 </script>
@@ -48,7 +54,8 @@ export default {
       return `${this.formData.title.length}/100`;
     })
     return {
-      suffix: suffix
+      suffix: suffix,
+      tag_list: null
     }
   },
   methods: {
@@ -56,12 +63,12 @@ export default {
       const self = this
       const submit_interface = this.submitInterface
       if(context.validateResult === true){
-        console.log(context)
         console.log(self.formData)
         axios.post("/api/blog/"+submit_interface, {
               "newTitle": self.formData.title,
               "newBlogContent": self.formData.content,
-              "blogId": self.$route.params.id
+              "blogId": self.$route.params.id,
+              "tags": self.formData.tags
             },
             {
               headers: getUserHeaders()
@@ -79,7 +86,15 @@ export default {
         MessagePlugin.error(context.firstError !== undefined? context.firstError : "")
       }
     },
+    onTagChange(){
+      this.formData.tags = this.tag_list.join(";")
+    },
   },
+  created() {
+    this.tag_list = this.formData.tags.trim()? this.formData.tags.split(";"):[]
+    console.log(this.tag_list)
+  }
+
 }
 
 </script>
@@ -103,5 +118,8 @@ div.form{
   background: white;
   margin: auto auto;
   width: 95%;
+}
+div.button{
+  margin: auto auto;
 }
 </style>

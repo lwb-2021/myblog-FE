@@ -2,7 +2,7 @@
   <t-list :split="true" :async-loading="async_loading" @load-more="page">
     <div class="item" v-for="blog in blogs">
       <blog-item :title="blog.title" :subtitle="blog.created" :preview-text="blog.content.slice(0, 50)"
-                :author-id="blog.authorId" :id="blog.id"/>
+                :author-id="blog.authorId" :id="blog.id" :tags="blog.tags.split(';')"/>
     </div>
   </t-list>
 
@@ -27,23 +27,21 @@ export default {
   },
   async created(){
     this.total = await this.count()
-    this.page()
+    await this.page()
   },
   methods: {
-    page() {
+    async page() {
       if(this.loaded >= this.total){
         return
       }
       this.loading = true
       const self = this
-      axios.get("api/blog/list?currentPage=" + (this.currentPage + 1)).then(res => {
-        const data = res.data.data
-        console.log(data)
-        self.blogs = data.records
-        self.currentPage = data.current
-        self.loaded += data.size
-        this.loading = false
-      })
+      const res = await axios.get("api/blog/list?currentPage=" + (this.currentPage + 1))
+      const data = res.data.data
+      self.blogs = data.records
+      self.currentPage = data.current
+      self.loaded += data.size
+      this.loading = false
     },
     async count(){
       let count;

@@ -15,8 +15,8 @@
         <router-link to="/blog/create">
           <t-icon class="t-menu__operations-icon" name="edit" />
         </router-link>
-        <router-link to="/login">
-          <t-icon class="t-menu__operations-icon" name="login" />
+        <router-link :to="avatar_ref">
+          <t-avatar :image="avatar_image" alt="加载失败" @click="clickHandler"></t-avatar>
         </router-link>
       </template>
     </t-head-menu>
@@ -32,18 +32,29 @@ const menuValue = ref('item2');
 </script>
 <script>
 
-import {isAdmin} from "../utils/utils";
+import {getUserInfo, isAdmin} from "../utils/utils";
 
 export default {
   name: "BlogMenu",
   data(){
     return {
-      isAdmin: false
+      isAdmin: false,
+      avatar_image: "/api/image/default_avatar.png",
+      avatar_ref: "/login"
     }
   },
   methods:{
     changeHandler(active){
       this.$router.push("/"+active)
+    },
+    clickHandler(){
+      getUserInfo().then(
+          (user_info) => {
+            if(user_info){
+              this.avatar_image = "/api" + user_info.data.avatar
+              this.avatar_ref = "/user/" + user_info.data.id
+            }
+          })
     }
   },
   created() {

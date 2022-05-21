@@ -1,6 +1,7 @@
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Blog from "../views/Blog.vue";
+import User from "../views/User.vue"
 import Admin from "../views/Admin.vue";
 import BlogSearch from "../views/BlogSearch.vue";
 import BlogEdit from "../views/BlogEdit.vue";
@@ -22,6 +23,11 @@ export const routes = [
         path: "/blog",
         name: "Blog",
         component: Blog
+    },
+    {
+        path: "/user/:id",
+        name: "User",
+        component: User
     },
     {
         path: "/admin",

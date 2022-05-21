@@ -8,6 +8,7 @@ export default {
   data(){
     const INITIAL_DATA = {
       title: "",
+      tags: "",
       content: ""
     }
     const formData = ref({...INITIAL_DATA})
